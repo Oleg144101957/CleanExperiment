@@ -7,13 +7,16 @@ import android.widget.EditText
 import android.widget.TextView
 import com.vishnevskiypro.cleanexperiment.R
 import com.vishnevskiypro.cleanexperiment.data.repository.UserRepositoryImpl
+import com.vishnevskiypro.cleanexperiment.data.storage.model.User
 import com.vishnevskiypro.cleanexperiment.domain.models.SaveUserNameParam
 import com.vishnevskiypro.cleanexperiment.domain.usecases.GetUserNameUseCase
 import com.vishnevskiypro.cleanexperiment.domain.usecases.SaveUserNameUseCase
 
 class MainActivity : AppCompatActivity() {
 
-    private val userRepository by lazy(LazyThreadSafetyMode.NONE){ UserRepositoryImpl(applicationContext) }
+    private val user by lazy (LazyThreadSafetyMode.NONE){ User() }
+
+    private val userRepository by lazy(LazyThreadSafetyMode.NONE){ UserRepositoryImpl() }
     private val getUserNameUseCase by lazy(LazyThreadSafetyMode.NONE){ GetUserNameUseCase(userRepository) }
     private val saveUserNameUseCase by lazy(LazyThreadSafetyMode.NONE){ SaveUserNameUseCase(userRepository) }
 

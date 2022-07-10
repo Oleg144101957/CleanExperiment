@@ -5,7 +5,7 @@ import com.vishnevskiypro.cleanexperiment.domain.models.UserName
 
 interface UserRepository {
 
-    fun saveName(saveUserNameParam: SaveUserNameParam) : Boolean
+    fun saveName(user: SaveUserNameParam) : Boolean
 
     fun getName() : UserName
 

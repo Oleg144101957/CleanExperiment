@@ -1,32 +1,31 @@
 package com.vishnevskiypro.cleanexperiment.data.repository
 
-import android.content.Context
-import android.content.SharedPreferences
+import com.vishnevskiypro.cleanexperiment.data.storage.model.User
+import com.vishnevskiypro.cleanexperiment.data.storage.UserStorage
 import com.vishnevskiypro.cleanexperiment.domain.models.SaveUserNameParam
 import com.vishnevskiypro.cleanexperiment.domain.models.UserName
 import com.vishnevskiypro.cleanexperiment.domain.repository.UserRepository
 
-
-private const val SHARED_PREF_NAME = "shared_pref"
-private const val KEY_FIRST_NAME = "firstName"
-private const val KEY_SECOND_NAME = "secondName"
-private const val DEFAULT_NAME = "default"
-
-class UserRepositoryImpl(private val context: Context) : UserRepository{
-
-    private val sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+class UserRepositoryImpl(private val userStorage: UserStorage) : UserRepository{
 
     override fun saveName(saveUserNameParam: SaveUserNameParam) : Boolean {
-        sharedPreferences.edit().putString(KEY_FIRST_NAME, saveUserNameParam.name).apply()
-        return true
+
+        val user = mapToStorage(saveUserNameParam)
+
+        val result = userStorage.save(user)
+        return result
     }
 
     override fun getName() : UserName {
-
-        val firstName = sharedPreferences.getString(KEY_FIRST_NAME, "") ?: ""
-        val secondName = sharedPreferences.getString(KEY_SECOND_NAME, "Default last name") ?: DEFAULT_NAME
-
-        return UserName(firstName, secondName)
+        val user = userStorage.get()
+        return mapToDomain(user)
     }
 
+    private fun mapToStorage(saveUserNameParam: SaveUserNameParam): User {
+        return User(saveUserNameParam.name, "")
+    }
+
+    private fun mapToDomain(user: User): UserName {
+        return UserName(user.firstName, user.lastName)
+    }
 }
