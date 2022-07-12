@@ -1,12 +1,12 @@
 package com.vishnevskiypro.cleanexperiment.data.repository
 
+import com.vishnevskiy.cleanexperiment.domain.models.SaveUserNameParam
+import com.vishnevskiy.cleanexperiment.domain.models.UserName
+import com.vishnevskiy.cleanexperiment.domain.repository.UserRepository
 import com.vishnevskiypro.cleanexperiment.data.storage.model.User
 import com.vishnevskiypro.cleanexperiment.data.storage.UserStorage
-import com.vishnevskiypro.cleanexperiment.domain.models.SaveUserNameParam
-import com.vishnevskiypro.cleanexperiment.domain.models.UserName
-import com.vishnevskiypro.cleanexperiment.domain.repository.UserRepository
 
-class UserRepositoryImpl(private val userStorage: UserStorage) : UserRepository{
+class UserRepositoryImpl(private val userStorage: UserStorage) : UserRepository {
 
     override fun saveName(saveUserNameParam: SaveUserNameParam) : Boolean {
 

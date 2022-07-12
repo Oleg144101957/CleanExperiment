@@ -7,18 +7,25 @@ import android.widget.EditText
 import android.widget.TextView
 import com.vishnevskiypro.cleanexperiment.R
 import com.vishnevskiypro.cleanexperiment.data.repository.UserRepositoryImpl
-import com.vishnevskiypro.cleanexperiment.data.storage.model.User
-import com.vishnevskiypro.cleanexperiment.domain.models.SaveUserNameParam
-import com.vishnevskiypro.cleanexperiment.domain.usecases.GetUserNameUseCase
-import com.vishnevskiypro.cleanexperiment.domain.usecases.SaveUserNameUseCase
+import com.vishnevskiy.cleanexperiment.domain.models.SaveUserNameParam
+import com.vishnevskiy.cleanexperiment.domain.repository.UserRepository
+import com.vishnevskiy.cleanexperiment.domain.usecases.GetUserNameUseCase
+import com.vishnevskiy.cleanexperiment.domain.usecases.SaveUserNameUseCase
+import com.vishnevskiypro.cleanexperiment.data.storage.sharedpref.SharedPrefUserStorage
 
 class MainActivity : AppCompatActivity() {
 
-    private val user by lazy (LazyThreadSafetyMode.NONE){ User() }
+    private val userRepository by lazy(LazyThreadSafetyMode.NONE){
+        UserRepositoryImpl(userStorage = SharedPrefUserStorage(applicationContext))
+    }
 
-    private val userRepository by lazy(LazyThreadSafetyMode.NONE){ UserRepositoryImpl() }
-    private val getUserNameUseCase by lazy(LazyThreadSafetyMode.NONE){ GetUserNameUseCase(userRepository) }
-    private val saveUserNameUseCase by lazy(LazyThreadSafetyMode.NONE){ SaveUserNameUseCase(userRepository) }
+    private val getUserNameUseCase by lazy(LazyThreadSafetyMode.NONE){
+        GetUserNameUseCase(userRepository = userRepository)
+    }
+
+    private val saveUserNameUseCase by lazy(LazyThreadSafetyMode.NONE){
+        SaveUserNameUseCase(userRepository = userRepository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

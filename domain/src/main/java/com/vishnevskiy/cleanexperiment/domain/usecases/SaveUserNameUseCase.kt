@@ -1,7 +1,7 @@
-package com.vishnevskiypro.cleanexperiment.domain.usecases
+package com.vishnevskiy.cleanexperiment.domain.usecases
 
-import com.vishnevskiypro.cleanexperiment.domain.models.SaveUserNameParam
-import com.vishnevskiypro.cleanexperiment.domain.repository.UserRepository
+import com.vishnevskiy.cleanexperiment.domain.models.SaveUserNameParam
+import com.vishnevskiy.cleanexperiment.domain.repository.UserRepository
 
 class SaveUserNameUseCase(private val userRepository: UserRepository) {
 

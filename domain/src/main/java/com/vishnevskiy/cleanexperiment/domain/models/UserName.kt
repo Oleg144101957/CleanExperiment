@@ -1,3 +1,3 @@
-package com.vishnevskiypro.cleanexperiment.domain.models
+package com.vishnevskiy.cleanexperiment.domain.models
 
 class UserName(val firstName: String, val lastName: String)
