@@ -1,6 +1,6 @@
 # CleanExperiment
 
-There is an experiments with Android Clean Architecture (ver 1)
+There is an experiments with Android Clean Architecture (ver 3)
 
 
 Приложение было разбито на модули: Domain, Presantatin(App), Data.
