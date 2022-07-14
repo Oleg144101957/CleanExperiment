@@ -4,7 +4,7 @@ There is an experiments with Android Clean Architecture (ver 4)
 
 
 В Clean Architecture добавлен паттерн MVVM 
-Измеенена диаграмма
+Изменена диаграмма
 
 
 ![Screenshot from 2022-07-14 22-41-18](https://user-images.githubusercontent.com/93651407/179034410-86a78517-c0e4-4006-9aff-a41216611396.png)
