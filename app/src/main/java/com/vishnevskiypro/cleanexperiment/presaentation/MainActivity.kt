@@ -2,23 +2,16 @@ package com.vishnevskiypro.cleanexperiment.presaentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.vishnevskiypro.cleanexperiment.R
-import com.vishnevskiypro.cleanexperiment.data.repository.UserRepositoryImpl
-import com.vishnevskiy.cleanexperiment.domain.models.SaveUserNameParam
-import com.vishnevskiy.cleanexperiment.domain.repository.UserRepository
-import com.vishnevskiy.cleanexperiment.domain.usecases.GetUserNameUseCase
-import com.vishnevskiy.cleanexperiment.domain.usecases.SaveUserNameUseCase
-import com.vishnevskiypro.cleanexperiment.data.storage.sharedpref.SharedPrefUserStorage
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var vm: MainViewModel
+    private val vm by viewModel<MainViewModel>()
 
 
 
@@ -26,10 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        Log.d("AAAAA", "Acteivity created (onCreate)")
-        vm = ViewModelProvider(this, MainViewModelFactory(this))
-            .get(MainViewModel::class.java)
 
         val dataTextView = findViewById<TextView>(R.id.dataView)
         val getButton = findViewById<Button>(R.id.buttonGet)
