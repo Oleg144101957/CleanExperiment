@@ -1,6 +1,14 @@
 # CleanExperiment
-
 There is an experiments with Android Clean Architecture (ver 4)
+
+
+
+
+There is Koin Implementation added in new branch Koin Implementation
+
+![Screenshot from 2022-07-18 02-05-11](https://user-images.githubusercontent.com/93651407/179422955-6a4712a5-d916-46da-8646-c3d95a1e4485.png)
+
+
 
 
 В Clean Architecture добавлен паттерн MVVM 
