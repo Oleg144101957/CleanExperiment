@@ -9,14 +9,13 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.vishnevskiypro.cleanexperiment.R
-import com.vishnevskiypro.cleanexperiment.data.repository.UserRepositoryImpl
-import com.vishnevskiy.cleanexperiment.domain.models.SaveUserNameParam
-import com.vishnevskiy.cleanexperiment.domain.repository.UserRepository
-import com.vishnevskiy.cleanexperiment.domain.usecases.GetUserNameUseCase
-import com.vishnevskiy.cleanexperiment.domain.usecases.SaveUserNameUseCase
-import com.vishnevskiypro.cleanexperiment.data.storage.sharedpref.SharedPrefUserStorage
+import com.vishnevskiypro.cleanexperiment.app.App
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var vmFactory: MainViewModelFactory
 
     private lateinit var vm: MainViewModel
 
@@ -26,9 +25,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        (applicationContext as App).appComponent.inject(this)
+
 
         Log.d("AAAAA", "Acteivity created (onCreate)")
-        vm = ViewModelProvider(this, MainViewModelFactory(this))
+        vm = ViewModelProvider(this, vmFactory)
             .get(MainViewModel::class.java)
 
         val dataTextView = findViewById<TextView>(R.id.dataView)
